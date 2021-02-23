@@ -3,11 +3,16 @@
     <el-row>
       <el-col :span="24">
          <div class="grid-content bg-purple-dark">
-             <div>78878</div>
-             <div>8888</div>
+             <div @click="changeItem(1)">78878</div>
+             <div @click="changeItem(2)">8888</div>
           </div>
       </el-col>
  </el-row>
+ <!-- 通知栏 -->
+ <van-notice-bar
+  left-icon="volume-o"
+  text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
+/>
    <!--居中显示的区域-->
     <el-container style="height: 350px;
     overflow: scroll;">
@@ -27,11 +32,28 @@
       </el-main>
     </el-container>
     <!-- 轮播显示-->
-    <el-carousel :interval="4000" type="card">
-      <el-carousel-item v-for="item in   bannerlist" :key="item.img">
-          <img  class="bannerimg"  :src="item.img" width="100%"  onerror="errorImg"/>
+    <el-carousel :interval="4000" type="card" style="height:12rem">
+      <el-carousel-item v-for="item in   bannerlist" :key="item.img" style="height:10rem">
+          <!-- <img  class="bannerimg"  :src="item.img" width="100%"  onerror="errorImg"/> -->
+          <van-image round width="10rem" height="10rem" :src="item.img"/>
       </el-carousel-item>
     </el-carousel>
+    <!-- 底部新闻 -->
+    <div>
+       <van-notice-bar mode="link">技术是开发它的人的共同灵魂。</van-notice-bar>
+       <van-notice-bar mode="link">技术是开发它的人的共同灵魂。</van-notice-bar>
+       <van-notice-bar mode="link">技术是开发它的人的共同灵魂。</van-notice-bar>
+       <van-notice-bar mode="link">技术是开发它的人的共同灵魂。</van-notice-bar>
+       <van-notice-bar mode="link">技术是开发它的人的共同灵魂。</van-notice-bar>
+    </div>
+    <!-- 步骤 -->
+   <van-steps >
+  <van-step>买家下单</van-step>
+  <van-step>商家接单</van-step>
+  <van-step>买家提货</van-step>
+  <van-step>交易完成</van-step>
+</van-steps>
+<div style="width:100%;text-align:center"><el-button type="primary" round @click="phoneme">主要按钮</el-button></div>
   </div>
 </template>
 <script>
@@ -76,8 +98,17 @@ export default {
              console.log(error)
         });
       },
-      //判断是手机还是pc
-      isMobile
+      //点击item切换
+      changeItem(index){
+        console.log(index);
+        if(index==1){
+           this.$router.push({name:'coment'})
+        }
+      },
+      //点击电话
+      phoneme(){
+         this.$router.push({name:'phoneme'})
+      }
    }
 }
 </script>
@@ -138,5 +169,8 @@ export default {
   
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
+  }
+  .el-carousel__container{
+    height: 170px;
   }
 </style>
