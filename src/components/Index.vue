@@ -40,7 +40,7 @@
     </el-carousel>
     <!-- 底部新闻 -->
     <div>
-       <van-notice-bar mode="link">技术是开发它的人的共同灵魂。</van-notice-bar>
+       <van-notice-bar mode="link" @click="wenzhang">技术是开发它的人的共同灵魂。</van-notice-bar>
        <van-notice-bar mode="link">技术是开发它的人的共同灵魂。</van-notice-bar>
        <van-notice-bar mode="link">技术是开发它的人的共同灵魂。</van-notice-bar>
        <van-notice-bar mode="link">技术是开发它的人的共同灵魂。</van-notice-bar>
@@ -101,13 +101,21 @@ export default {
       //点击item切换
       changeItem(index){
         console.log(index);
+        //条状到项目详情页 
         if(index==1){
            this.$router.push({name:'coment'})
+        }
+        //条状到关于我们
+        if(index==2){
+          this.$router.push({name:'aboutus'})
         }
       },
       //点击电话
       phoneme(){
          this.$router.push({name:'phoneme'})
+      },
+      wenzhang(){
+         this.$router.push({name:'wenzhang'})
       }
    }
 }
