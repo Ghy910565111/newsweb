@@ -53,16 +53,21 @@
   <van-step>买家提货</van-step>
   <van-step>交易完成</van-step>
 </van-steps>
-<div style="width:100%;text-align:center"><el-button type="primary" round @click="phoneme">主要按钮</el-button></div>
+<phoneme :qq="age" @ok="print"/>
   </div>
 </template>
 <script>
+import phoneme from '@/components/phoneme'
 export default {
    name:"Index",
+   components:{
+     phoneme
+   },
    data(){
      return{
        xiadandata:[],
-       bannerlist:[]
+       bannerlist:[],
+       age:15
      }
    },
    created(){
@@ -92,7 +97,7 @@ export default {
        //获取轮播的介绍
       getbanneritem(){
           this.$http.get('../../static/banner.json').then((response) => {
-            console.log(response);
+          //  console.log(response);
             this.bannerlist=response.data
           })  .catch(error=>{
              console.log(error)
@@ -110,12 +115,12 @@ export default {
           this.$router.push({name:'aboutus'})
         }
       },
-      //点击电话
-      phoneme(){
-         this.$router.push({name:'phoneme'})
-      },
+
       wenzhang(){
-         this.$router.push({name:'wenzhang'})
+         this.$router.push({name:'wenzhang',params:{age:this.age}})
+      },
+      print(data){
+        console.log(data);
       }
    }
 }

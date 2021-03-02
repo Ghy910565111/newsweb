@@ -7,13 +7,16 @@
   left-arrow
   @click-left="onClickLeft"
 /> 
-      此页面调用父子组件
+     <p>{{this.$route.params.age}}</p>
   </div>
 </template>
 
 <script>
 export default {
 name:"wenzhang",
+ created(){
+        console.log(this.$route.params.age)
+   },
    methods:{
      onClickLeft(){
         this.$router.push({name:'Index'})

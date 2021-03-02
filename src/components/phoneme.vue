@@ -3,8 +3,6 @@
           <!-- 头部返回 -->
      <van-nav-bar
   title="标题"
-  left-text="返回"
-  left-arrow
   @click-left="onClickLeft"
   show
 />
@@ -32,12 +30,20 @@ export default {
       input2:"2"
     }
   },
+   created(){
+        //console.log(this.$props);
+   },
+  props:["qq"],
     methods:{
      onClickLeft(){
         this.$router.push({name:'Index'})
      },
      onSave(){
        console.log("111");
+       let  s=this;
+       console.log(s.$props);
+       //向父组件传递
+       s.$emit('ok',"我是子组件传递来的")
      }
    }
 }
